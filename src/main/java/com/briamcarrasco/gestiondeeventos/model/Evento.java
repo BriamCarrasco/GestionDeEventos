@@ -1,5 +1,6 @@
 package com.briamcarrasco.gestiondeeventos.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Evento {
@@ -10,13 +11,13 @@ public class Evento {
     private String descripcionEvento;
     private List<Participante> participantes;
 
-    public Evento(int id, String nombreEvento, String fechaEvento, String lugarEvento, String descripcionEvento, Participante participante) {
+    public Evento(int id, String nombreEvento, String fechaEvento, String lugarEvento, String descripcionEvento, List<Participante> participantes) {
         this.id = id;
         this.nombreEvento = nombreEvento;
         this.fechaEvento = fechaEvento;
         this.lugarEvento = lugarEvento;
         this.descripcionEvento = descripcionEvento;
-        this.participantes = List.of(participante);
+        this.participantes = participantes != null ? participantes : new ArrayList<>();
     }
 
     public int getId() {

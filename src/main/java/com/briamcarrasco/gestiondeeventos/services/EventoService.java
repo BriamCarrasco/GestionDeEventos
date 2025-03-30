@@ -3,6 +3,7 @@ package com.briamcarrasco.gestiondeeventos.services;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,11 @@ public class EventoService {
         this.participanteService = participanteService;
 
         List<Participante> participantes = participanteService.obtenerParticipantes();
-        evento.add(new Evento(1, "Competencia de Agilidad", "2023-10-15", "Parque Central", "Competencia de agilidad para perros", participantes.get(0)));
+        List<Participante> participantesConPerros = participantes.stream()
+        .filter(participante -> participante.tienePerro()) 
+        .collect(Collectors.toList());
+        evento.add(new Evento(1, "Competencia de Agilidad", "2023-10-15", "Parque Central", "Competencia de agilidad para perros", participantesConPerros));
+        evento.add(new Evento(2, "Exposicion de mascotas", "2023-11-20", "Centro de Eventos", "Exposición de mascotas general", participantes));
     }
 
     public List<Evento> obtenerEvento() {

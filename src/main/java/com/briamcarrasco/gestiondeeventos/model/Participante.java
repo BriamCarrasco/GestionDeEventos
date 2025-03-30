@@ -47,4 +47,7 @@ public class Participante {
         return mascota;
     }
     
+    public boolean tienePerro() {
+        return mascota != null && "Perro".equalsIgnoreCase(mascota.getEspecie());
+    }
 }
